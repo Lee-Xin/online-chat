@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线一对多聊天室</title>
+</head>
+<body>
+    <div>
+        <p>在线一对多聊天室</p>
+    </div>
+    <input type="text" id="msgInput">
+    <input type="button" value="发送" id="msgSubmit">
+    <div id="tip" style="display: none;">
+        <p id="tipContent"></p>
+        <button id="then">是</button>
+        <button id="catch">否</button>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    window.onload = () => {
+        let input = document.getElementById('msgInput')
+        let submit = document.getElementById('msgSubmit')
+        let roomId = ''
+        let socket = io()
+
+        socket.emit('new chat', 1)
+
+        submit.addEventListener('click', function(){
+            if(input.value){
+                socket.emit('send private message', {
+                    msg: input.value,
+                    userId: 1,
+                    staffId: 1
+                })
+            } else {
+                alert('请输入内容')
+            }
+        })
+
+        socket.on('receive private message', function(res){
+            console.log(res);
+        })
+        socket.on('disconnect', function(){
+            console.log('断线了...')
+        })
+    }
+</script>
+</html>
