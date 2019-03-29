@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户界面</title>
+    <title>客服界面</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        html,body{
+
+        html, body {
             height: 100%;
         }
-        body{
+
+        body {
             padding-bottom: 59px;
             box-sizing: border-box;
             background-color: #f7f6fb;
@@ -20,34 +22,41 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        .inputs{
+
+        .inputs {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
         }
-        .chat-content{
+
+        .chat-content {
             height: calc(100% - 132px);
             overflow-y: auto;
+            overflow-x: hidden;
             padding-bottom: 20px;
             box-sizing: border-box;
         }
-        .chat-content .self-msg{
+
+        .chat-content .self-msg {
             text-align: right;
             padding: 0 10px;
             margin-top: 10px;
         }
-        .chat-content .other-msg{
+
+        .chat-content .other-msg {
             text-align: left;
             padding: 0 10px;
             margin-top: 10px;
         }
-        .chat-content .sys-msg{
+
+        .chat-content .sys-msg {
             padding: 0 10px;
             margin-top: 10px;
             text-align: center;
         }
-        .chat-content .other-msg > span{
+
+        .chat-content .other-msg > span {
             display: inline-block;
             padding: 15px 20px 15px 15px;
             background-color: #e4e4e4;
@@ -63,7 +72,8 @@
             -webkit-animation: slide-right .2s ease-in-out;
             animation: slide-right .2s ease-in-out;
         }
-        .chat-content .self-msg > span{
+
+        .chat-content .self-msg > span {
             display: inline-block;
             padding: 15px 20px 15px 15px;
             background-color: #4592e2;
@@ -79,7 +89,8 @@
             -webkit-animation: slide-left .2s ease-in-out;
             animation: slide-left .2s ease-in-out;
         }
-        .chat-content .sys-msg > span{
+
+        .chat-content .sys-msg > span {
             padding: 5px 10px;
             border-radius: 4px;
             display: inline-block;
@@ -88,62 +99,76 @@
             -webkit-animation: fade-in .2s ease-in-out;
             animation: fade-in .2s ease-in-out;
         }
-        .inputs>input {
+
+        .inputs > input {
             border: none;
             font-size: 16px;
         }
-        .inputs>input:focus{
+
+        .inputs > input:focus {
             border: none;
             outline: none;
         }
-        .inputs>input[type="text"]{
+
+        .inputs > input[type="text"] {
             display: inline-block;
             width: 100%;
             padding: 20px 10px;
         }
-        .inputs>.submit{
+
+        .inputs > .submit {
             display: inline-block;
             padding: 20px;
             background-color: #4592e2;
             color: #ffffff;
         }
-        .inputs>input[type="button"] {
+
+        .inputs > input[type="button"] {
             display: inline-block;
             padding: 20px;
             background-color: #4592e2;
             color: #ffffff;
         }
-        .flex{
+
+        .flex {
             display: flex;
         }
-        .flex-1{
+
+        .flex-1 {
             flex: 1;
         }
-        .user-info,.deal-info{
+
+        .user-info, .deal-info {
             padding: 15px 15px;
             background-color: #ffffff;
         }
-        .deal-info{
+
+        .deal-info {
             border-top: solid 1px #ddd;
         }
-        .title{
+
+        .title {
             font-size: 12px;
             color: #888;
         }
-        .content{
+
+        .content {
             font-size: 20px;
             color: #4592e2;
             margin-top: 10px;
         }
-        .right-text{
+
+        .right-text {
             padding-top: 20px;
             font-size: 20px;
             color: #4592e2;
         }
-        .icon-right-arrow{
+
+        .icon-right-arrow {
             position: relative;
         }
-        .icon-right-arrow:after{
+
+        .icon-right-arrow:after {
             content: '';
             display: inline-block;
             width: 10px;
@@ -152,51 +177,57 @@
             border-bottom: solid 2px #ddd;
             transform: rotate(-45deg);
         }
+
         @keyframes slide-left {
-            from{
+            from {
                 transform: translateX(100%);
             }
-            to{
+            to {
                 transform: translateX(0);
             }
         }
+
         @-webkit-keyframes slide-left {
-            from{
+            from {
                 -webkit-transform: translateX(100%);
             }
-            to{
+            to {
                 -webkit-transform: translateX(0);
             }
         }
+
         @keyframes slide-right {
-            from{
+            from {
                 transform: translateX(-100%);
             }
-            to{
+            to {
                 transform: translateX(0);
             }
         }
+
         @-webkit-keyframes slide-right {
-            from{
+            from {
                 -webkit-transform: translateX(-100%);
             }
-            to{
+            to {
                 -webkit-transform: translateX(0);
             }
         }
+
         @keyframes fade-in {
-            from{
+            from {
                 opacity: 0;
             }
-            to{
+            to {
                 opacity: 1;
             }
         }
+
         @-webkit-keyframes fade-in {
-            from{
+            from {
                 opacity: 0;
             }
-            to{
+            to {
                 opacity: 1;
             }
         }
@@ -205,13 +236,13 @@
 <body>
 <div class="user-info flex">
     <p class="flex-1" style="text-align: left;">
-        <span id="serviceName"></span>
+        <span id="userName"></span>
         <i class="icon icon-right-arrow"></i>
     </p>
 </div>
 <div class="deal-info flex">
     <div class="flex-1" style="text-align: left;">
-        <p class="title">客服的一些描述...</p>
+        <p class="title">用户的一些描述...</p>
     </div>
 </div>
 <div class="chat-content" id="chatContent">
@@ -236,24 +267,23 @@
             query[split[0]] = split[1]
         })
     })(window);
-
     let userInfo = {
         customer: {
-            id: query.cid,
-            isSender: true
+            id: query.cid
         },
         service: {
-            id: query.sid
+            id: query.sid,
+            isSender: true
         }
     }
     window.onload = () => {
-        let serviceName = document.getElementById('serviceName')
+        let userName = document.getElementById('userName')
         let input = document.getElementById('msgInput')
         let submit = document.getElementById('msgSubmit')
         let socket = io()
         socket.emit('new chat', userInfo)
 
-        serviceName.innerText = '客服'+query.sid
+        userName.innerText = '用户'+query.cid
 
         submit.addEventListener('click', function(){
             if(input.value){
@@ -267,7 +297,7 @@
             }
         })
 
-        socket.on('callback private message', function(res){
+        socket.on('callback private message', function (res) {
             receiveMsg(res)
         })
         socket.on('disconnect', function(){
@@ -278,7 +308,6 @@
             })
         })
     }
-
     function receiveMsg(data){
         let chatContent = document.getElementById('chatContent')
         if(!chatContent){
