@@ -28,6 +28,6 @@ npm start
 ## 页面打开
 #### 聊天页面：
 
-客户页面：http://localhost:3000/client.html?cid=xxx&sid=xxx
-客服页面：http://localhost:3000/service.html?cid=xxx&sid=xxx
+客户页面：http://localhost:3000/client?cid=xxx&sid=xxx
+客服页面：http://localhost:3000/service?cid=xxx&sid=xxx
 （参数顺序随意）
